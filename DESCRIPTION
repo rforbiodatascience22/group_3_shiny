@@ -12,8 +12,10 @@ URL: https://github.com/rforbiodatascience22/group_3_shiny
 BugReports: https://github.com/rforbiodatascience22/group_3_shiny/issues
 Imports: 
     config (>= 0.3.1),
+    ggplot2,
     golem (>= 0.3.2),
     magrittr,
+    Rbosome,
     shiny (>= 1.7.1)
 Encoding: UTF-8
 LazyData: true
