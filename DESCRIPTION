@@ -1,7 +1,9 @@
 Package: rbosome
 Title: Centrol dogma of Molecular Biology
 Version: 0.0.0.9000
-Authors@R: person('Daniel', 'Pedrosa Martin', email = 's213270@student.dtu.dk', role = c('cre', 'aut'))
+Authors@R: c(
+person('Daniel', 'Pedrosa Martin', email = 's213270@student.dtu.dk', role = c('cre', 'aut')),
+person(given = 'Mads', first = 'Cort', email = 's120356@student.dtu.dk', role = 'aut'))
 Description: Processing of the central dogma.
 License: MIT + file LICENSE
 Imports: 
