@@ -3,7 +3,8 @@ Title: Centrol dogma of Molecular Biology
 Version: 0.0.0.9000
 Authors@R: 
   c(person(given = 'Daniel', first = 'Pedrosa Martin', email = 's213270@student.dtu.dk', role = c('cre', 'aut')),
-    person(given = 'Mads', first = 'Cort', email = 's120356@student.dtu.dk', role = 'aut'))
+    person(given = 'Mads', first = 'Cort', email = 's120356@student.dtu.dk', role = 'aut'),
+    person(given = 'Klara Alicja', first = 'Kotkowska', email = 's123028@.dtu.dk', role = 'aut'))
 Description: Processing of the central dogma.
 License: MIT + file LICENSE
 Imports: 
