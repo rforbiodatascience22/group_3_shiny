@@ -36,6 +36,15 @@ mod_plot_ui <- function(id){
 mod_plot_server <- function(id){
   moduleServer( id, function(input, output, session){
     ns <- session$ns
+    output$abundance <- renderPlot({
+      if(input$peptide == ""){
+        NULL
+      } else{
+        input$peptide %>%
+          Rbosome::aa_abundance_plot() +
+          ggplot2::theme(legend.position = "none")
+      }
+    })
 
   })
 }
