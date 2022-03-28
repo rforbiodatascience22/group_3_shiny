@@ -11,7 +11,13 @@ mod_plot_ui <- function(id){
   ns <- NS(id)
   tagList(sidebarLayout(
     sidebarPanel(
-      "peptide_sequence"
+      textAreaInput(
+        inputId = ns("peptide"),
+        label = "Peptide sequence",
+        width = 300,
+        height = 100,
+        placeholder = "Insert peptide sequence"
+      )
     ),
     mainPanel(
       "plot"
