@@ -6,3 +6,6 @@
 myshinyapp.Rcheck/
 myshinyapp*.tar.gz
 myshinyapp*.tgz
+Rbosome.Rcheck/
+Rbosome*.tar.gz
+Rbosome*.tgz

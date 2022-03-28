@@ -7,6 +7,12 @@ $run_dev.*
 ^myshinyapp\.Rcheck$
 ^myshinyapp.*\.tar\.gz$
 ^myshinyapp.*\.tgz$
+<<<<<<< HEAD
 ^LICENSE\.md$
 ^README\.Rmd$
 ^CODE_OF_CONDUCT\.md$
+=======
+^Rbosome\.Rcheck$
+^Rbosome.*\.tar\.gz$
+^Rbosome.*\.tgz$
+>>>>>>> 29efb3a41f543d9baa9ca6a793009c5293d58e4f
