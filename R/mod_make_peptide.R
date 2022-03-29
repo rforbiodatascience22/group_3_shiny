@@ -65,7 +65,7 @@ mod_make_peptide_server <- function(id){
       # Create reaction when generate dna button is clicked.
       observeEvent(input$generate_DNA, {
         dna(
-          #Rbosome::ATCG(input$DNA_length)
+          Rbosome::ATGC(input$DNA_length)
         )
       })
 
