@@ -13,11 +13,11 @@ mod_make_peptide_ui <- function(id){
     fluidPage(
       fluidRow(
         column(8,
-               # Make peptide button
+               # UI output from server (with DNA_sequence output):
                uiOutput(ns("DNA_sequence"))
                ),
         column(4,
-               # Random sequence length input
+               # Random sequence length input widget
                numericInput(
                  inputId = ns("DNA_length"),
                  value = 6000,
@@ -46,7 +46,8 @@ mod_make_peptide_ui <- function(id){
 mod_make_peptide_server <- function(id){
   moduleServer( id, function(input, output, session){
     ns <- session$ns
-    # Create reactive DNA value
+
+    # Create reactive DNA value.
     dna <- reactiveVal()
 
     # Create input textbox with the reactive DNA value
@@ -59,8 +60,30 @@ mod_make_peptide_server <- function(id){
         height = 100,
         width = 600
       )
+    })
 
+      # Create reaction when generate dna button is clicked.
+      observeEvent(input$generate_DNA, {
+        dna(
+          #Rbosome::ATCG(input$DNA_length)
+        )
+      })
 
+      # Create peptide output string from textbox DNA_sequence input:
+
+      output$peptide <- renderText({
+        # Ensure input is not NULL and is longer than 2 characters
+        if(is.null(input$DNA_sequence)){
+          NULL
+        } else if(nchar(input$DNA_sequence) < 3){
+          NULL
+        } else{
+          input$DNA_sequence %>%
+            toupper() %>%
+            Rbosome::DNA_to_RNA() %>%
+            Rbosome::rna_transform() %>%
+            Rbosome::translate()
+        }
     })
 
 
