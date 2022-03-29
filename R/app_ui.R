@@ -12,8 +12,8 @@ app_ui <- function(request) {
     fluidPage(
       h1("Rbosome FOREVER"),
       tabsetPanel(
-        tabPanel(title = "panel1",
-                 "module1"),
+        tabPanel(title = "Make Peptide!",
+                 mod_make_peptide_ui("make_peptide_1")),
         tabPanel(title = "Abundance plot",
                  mod_plot_ui("plot_1"))
       )
