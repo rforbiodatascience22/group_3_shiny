@@ -46,6 +46,23 @@ mod_make_peptide_ui <- function(id){
 mod_make_peptide_server <- function(id){
   moduleServer( id, function(input, output, session){
     ns <- session$ns
+    # Create reactive DNA value
+    dna <- reactiveVal()
+
+    # Create input textbox with the reactive DNA value
+    output$DNA_sequence <- renderUI({
+      textAreaInput(
+        inputId = ns("DNA_sequence"),
+        label = "DNA sequence",
+        placeholder = "Insert DNA sequence",
+        value = dna(),
+        height = 100,
+        width = 600
+      )
+
+
+    })
+
 
   })
 }
