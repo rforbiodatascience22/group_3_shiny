@@ -13,25 +13,27 @@ mod_make_peptide_ui <- function(id){
     fluidPage(
       fluidRow(
         column(8,
-               "DNA_sequence",
+               # Make peptide button
                uiOutput(ns("DNA_sequence"))
                ),
         column(4,
+               # Random sequence length input
                numericInput(
-                 inputId = ns("dna_length"),
+                 inputId = ns("DNA_length"),
                  value = 6000,
                  min = 3,
                  max = 100000,
                  step = 3,
                  label = "Random DNA length"
                ),
+               # Generate random sequence button
                actionButton(
-                 inputId = ns("generate_dna"),
+                 inputId = ns("generate_DNA"),
                  label = "Generate", style = "margin-top: 18px;"
                 )
                )
       ),
-      "peptide_sequence",
+      # Peptide sequence output field
       verbatimTextOutput(outputId = ns("peptide")) %>%
         tagAppendAttributes(style = "white-space: pre-wrap;")
     )
