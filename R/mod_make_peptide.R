@@ -13,6 +13,18 @@ mod_make_peptide_ui <- function(id){
     textInput(ns("dna"),
               label = h3("Insert your DNA sequence here"),
               value = "Insert sequence..."),
+    numericInput(
+      inputId = ns("dna_length"),
+      value = 6000,
+      min = 3,
+      max = 100000,
+      step = 3,
+      label = "Random DNA length"
+    ),
+    actionButton(
+      inputId = ns("generate_dna"),
+      label = "Generate random DNA", style = "margin-top: 18px;"
+    ),
     hr(),
     fluidRow(
       column(2, verbatimTextOutput("value")),
@@ -24,6 +36,7 @@ mod_make_peptide_ui <- function(id){
       shiny::textOutput(
         outputId = ns("value")
       )
+
     )
   )
 }
@@ -34,7 +47,9 @@ mod_make_peptide_ui <- function(id){
 mod_make_peptide_server <- function(id){
   moduleServer( id, function(input, output, session){
     ns <- session$ns
-    output$value <- renderPrint({ input$dna })
+    #output$value <- renderPrint({ input$dna })
+    output$value <- renderPrint({ input$generate_dna })
+
 
   })
 }
