@@ -11,6 +11,9 @@
 mod_make_peptide_ui <- function(id){
   ns <- NS(id)
   tagList(
+    hr(strong("Welcome to Rbosome server!")),
+    p("Insert a DNA query or generate a random sequence of
+      chosen length."),
     fluidRow(
       column(8, shiny::uiOutput(ns("DNA"))),
       column(4, shiny::numericInput(

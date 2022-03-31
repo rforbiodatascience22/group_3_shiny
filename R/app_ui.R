@@ -11,8 +11,8 @@ app_ui <- function(request) {
     # Your application UI logic
     fluidPage(
       theme = bslib::bs_theme(
-        bootswatch = "lux"),
-      h1("Rbosome FOREVER"),
+        bootswatch = "sandstone"),
+      h1("Rbosome server"),
       tabsetPanel(
         tabPanel(title = "Convert DNA to peptide",
                  mod_make_peptide_ui("make_peptide_1")),

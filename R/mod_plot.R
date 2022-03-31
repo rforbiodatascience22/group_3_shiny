@@ -18,7 +18,7 @@ mod_plot_ui <- function(id){
         insert the amino-acide sequence in
         the box bellow.
         Here we provide an example peptide,
-        the HUMAN Serotonin N-acetyltransferase")
+        the HUMAN Serotonin N-acetyltransferase.")
         )),
         shiny::textAreaInput(
           inputId = ns("peptide"),
