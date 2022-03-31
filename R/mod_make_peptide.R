@@ -12,6 +12,7 @@ mod_make_peptide_ui <- function(id){
   ns <- NS(id)
   tagList(
     hr(strong("Welcome to Rbosome server!")),
+    p("With this tool you can convert a DNA sequense to amino acid seuence"),
     p("Insert a DNA query or generate a random sequence of
       chosen length."),
     fluidRow(
@@ -47,7 +48,7 @@ mod_make_peptide_server <- function(id){
       textAreaInput(
         inputId = ns("DNA"),
         label = "DNA sequence",
-        placeholder = "Insert DNA sequence",
+        placeholder = "Insert DNA sequence...",
         value = dna(),
         height = 100,
         width = 600

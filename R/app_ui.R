@@ -14,10 +14,12 @@ app_ui <- function(request) {
         bootswatch = "sandstone"),
       h1("Rbosome server"),
       tabsetPanel(
-        tabPanel(title = "Convert DNA to peptide",
+        shiny::tabPanel(title = "Convert DNA to peptide",
                  mod_make_peptide_ui("make_peptide_1")),
-        tabPanel(title = "Abundance plot",
-                 mod_plot_ui("plot_1"))
+        shiny::tabPanel(title = "Abundance plot",
+                 mod_plot_ui("plot_1")),
+        shiny::tabPanel(title = "Restriction sites",
+                 mod_restr_enzyme_ui("restr_enzyme_1"))
       )
     )
   )
