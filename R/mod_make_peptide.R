@@ -37,6 +37,7 @@ mod_make_peptide_ui <- function(id){
       verbatimTextOutput(outputId = ns("peptide")) %>%
         tagAppendAttributes(style = "white-space: pre-wrap;")
     )
+
   )
 }
 
