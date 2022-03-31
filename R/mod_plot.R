@@ -10,14 +10,29 @@
 mod_plot_ui <- function(id){
   ns <- NS(id)
   tagList(
+
     shiny::sidebarLayout(
       shiny::sidebarPanel(
+        fluidRow(column(12,
+        p("To create an aa abundance plot,
+        insert the amino-acide sequence in
+        the box bellow.
+        Here we provide an example peptide,
+        the HUMAN Serotonin N-acetyltransferase")
+        )),
         shiny::textAreaInput(
           inputId = ns("peptide"),
           label = "Peptide sequence",
           width = 300,
           height = 100,
-          placeholder = "Insert peptide sequence"
+          value = paste0(c("MSTQSTHPLKPEAPRLPPGIPESPSCQ",
+                         "RRHTLPASEFRCLTPEDAVSAFEIERE",
+                         "AFISVLGVCPLYLDEIRHFLTLCPELS",
+                         "LGWFEEGCLVAFIIGSLWDKERLMQES",
+                         "LTLHRSGGHIAHLHVLAVHRAFRQQGR",
+                         "GPILLWRYLHHLGSQPAVRRAALMCED",
+                         "ALVPFYERFSFHAVGPCAITVGSLTFM",
+                         "ELHCSLRGHPFLRRNSGC"), collapse = "")
         )
       ),
       shiny::mainPanel(

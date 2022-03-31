@@ -7,61 +7,69 @@
 #' @noRd
 #'
 #' @importFrom shiny NS tagList
+
 mod_make_peptide_ui <- function(id){
   ns <- NS(id)
   tagList(
-    textInput(ns("dna"),
-              label = h3("Insert DNA sequence"),
-              value = "Insert sequence..."),
-    numericInput(
-      inputId = ns("dna_length"),
-      value = 60,
-      min = 3,
-      max = 100000,
-      step = 3,
-      label = "Random DNA length"
-    ),
-    actionButton(
-      inputId = ns("generate_dna"),
-      label = "Generate", style = "margin-top: 18px;"
-    ),
     fluidRow(
-      column(2, verbatimTextOutput("value")),
-      #column(2, "random_dna_length", "generate_dna_button"),
-      #column(10, "peptide_sequence" )
+      column(8, shiny::uiOutput(ns("DNA"))),
+      column(4, shiny::numericInput(
+        inputId = ns("dna_length"),
+        value = 6000,
+        min = 3,
+        max = 100000,
+        step = 3,
+        label = "Random DNA length"
       ),
+      shiny::actionButton(
+        inputId = ns("generate_dna"),
+        label = "Generate random DNA", style = "margin-top: 18px;"
+      ))
+    ),
+    shiny::verbatimTextOutput(outputId = ns("peptide")) %>%
+      shiny::tagAppendAttributes(style = "white-space: pre-wrap;")
 
-    mainPanel(
-      textOutput(
-        outputId = ns("value")
-      ),
-      textOutput(
-        outputId = ns("gdna")
-      )
-
-    )
   )
 }
-
 #' make_peptide Server Functions
 #'
 #' @noRd
 mod_make_peptide_server <- function(id){
   moduleServer( id, function(input, output, session){
     ns <- session$ns
-    output$value <- renderPrint({ input$dna })
-    output$randomdna <- renderText({
-      paste0( sample(c("A","T","G","C"),
-                     size = input$dna_length,
-                     replace = TRUE),
-              collapse = ""
-              )
-      })
-    output$gdna <- observeEvent( input$generate_dna, {
-      print(output$randomdna)
+
+    dna <- reactiveVal()
+
+    output$DNA <- renderPrint({
+      textAreaInput(
+        inputId = ns("DNA"),
+        label = "DNA sequence",
+        placeholder = "Insert DNA sequence",
+        value = dna(),
+        height = 100,
+        width = 600
+      )
     })
 
-
+    observeEvent(input$generate_dna, {
+      dna(
+        Rbosome::ATGC(input$dna_length)
+      )
+    })
+    output$peptide <- renderText({
+      # Ensure input is not NULL and is longer than 2 characters
+      if(is.null(input$DNA)){
+        NULL
+      } else if(nchar(input$DNA) < 3){
+        NULL
+      } else{
+        input$DNA %>%
+          toupper() %>%
+          Rbosome::DNA_to_RNA() %>%
+          Rbosome::rna_transform() %>%
+          Rbosome::translate()
+      }
+    })
   })
 }
 

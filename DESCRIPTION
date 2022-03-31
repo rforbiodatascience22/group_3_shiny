@@ -1,16 +1,15 @@
 Package: rbosome
 Title: Centrol dogma of Molecular Biology
 Version: 0.0.0.9000
-Authors@R: 
-  c(person(given = 'Daniel', first = 'Pedrosa Martin', email = 's213270@student.dtu.dk', role = c('cre', 'aut')),
-    person(given = 'Mads', first = 'Cort', email = 's120356@student.dtu.dk', role = 'aut'),
-    person(given = 'Klara Alicja', first = 'Kotkowska', email = 's123028@.dtu.dk', role = 'aut'),
-    person(given = 'Angeliki', first = 'Kallia Spentza', email = 's212881@.dtu.dk', role = 'aut'))
+Authors@R: c(
+ .
+   )
 Description: Processing of the central dogma.
 License: MIT + file LICENSE
 URL: https://github.com/rforbiodatascience22/group_3_shiny
 BugReports: https://github.com/rforbiodatascience22/group_3_shiny/issues
-Imports: 
+Imports:
+    bslib,
     config (>= 0.3.1),
     ggplot2,
     golem (>= 0.3.2),
