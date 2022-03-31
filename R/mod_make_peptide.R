@@ -11,11 +11,11 @@ mod_make_peptide_ui <- function(id){
   ns <- NS(id)
   tagList(
     textInput(ns("dna"),
-              label = h3("Insert your DNA sequence here"),
+              label = h3("Insert DNA sequence"),
               value = "Insert sequence..."),
     numericInput(
       inputId = ns("dna_length"),
-      value = 6000,
+      value = 60,
       min = 3,
       max = 100000,
       step = 3,
@@ -23,18 +23,20 @@ mod_make_peptide_ui <- function(id){
     ),
     actionButton(
       inputId = ns("generate_dna"),
-      label = "Generate random DNA", style = "margin-top: 18px;"
+      label = "Generate", style = "margin-top: 18px;"
     ),
-    hr(),
     fluidRow(
       column(2, verbatimTextOutput("value")),
-      column(2, "random_dna_length", "generate_dna_button"),
-      column(10, "peptide_sequence" )
+      #column(2, "random_dna_length", "generate_dna_button"),
+      #column(10, "peptide_sequence" )
       ),
 
     mainPanel(
-      shiny::textOutput(
+      textOutput(
         outputId = ns("value")
+      ),
+      textOutput(
+        outputId = ns("gdna")
       )
 
     )
@@ -47,8 +49,17 @@ mod_make_peptide_ui <- function(id){
 mod_make_peptide_server <- function(id){
   moduleServer( id, function(input, output, session){
     ns <- session$ns
-    #output$value <- renderPrint({ input$dna })
-    output$value <- renderPrint({ input$generate_dna })
+    output$value <- renderPrint({ input$dna })
+    output$randomdna <- renderText({
+      paste0( sample(c("A","T","G","C"),
+                     size = input$dna_length,
+                     replace = TRUE),
+              collapse = ""
+              )
+      })
+    output$gdna <- observeEvent( input$generate_dna, {
+      print(output$randomdna)
+    })
 
 
   })
