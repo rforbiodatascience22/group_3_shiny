@@ -10,6 +10,10 @@
 mod_restr_enzyme_ui <- function(id){
   ns <- NS(id)
   tagList(
+    hr(strong("Choose the restriction enzyme
+             to find cutting positions in a DNA
+             sequence.")),
+    p("The sequence should be in the direction of 5-end to 3-end."),
     fluidRow(
       column(4, shiny::radioButtons(
         inputId = ns("enzyme_choice"),
@@ -45,16 +49,16 @@ mod_restr_enzyme_server <- function(id){
     })
 
     output$position <- renderPrint({
-      # Ensure input is not NULL and is longer than 6 characters
-      if(is.null(input$DNA)){
-        NULL
-      } else if(nchar(input$DNA) < 6){
+      #Ensure choice input is not NULL
+      if(is.null(input$enzyme_choice)){
         NULL
       } else{
-        input$DNA %>%
+        input$enzyme_choice %>%
       Biostrings::matchPattern(
-        input$enzyme_choice)
+        input$DNA)
       }
+      # Biostrings::matchPattern(
+      #   input$enzyme_choice, input$DNA)
   }
   )
   }

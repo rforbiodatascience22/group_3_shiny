@@ -11,11 +11,12 @@ mod_plot_ui <- function(id){
   ns <- NS(id)
   tagList(
 
+   hr(strong('To create an aa abundance plot,
+        insert the amino-acide sequence in
+        the box bellow.')),
+
     shiny::sidebarLayout(
       shiny::sidebarPanel(
-        titlePanel('To create an aa abundance plot,
-        insert the amino-acide sequence in
-        the box bellow.'),
         fluidRow(column(12,
         p("Here we provide an example peptide,
         the HUMAN Serotonin N-acetyltransferase.")
